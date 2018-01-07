@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
+class Feedback(models.Model):
     Name = models.CharField(max_length=100)
     Email = models.CharField(max_length=500)
     Subject = models.CharField(max_length=500)
@@ -9,4 +9,4 @@ class User(models.Model):
     Timestamp = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.Name
+        return self.Name + ' | ' + self.Timestamp

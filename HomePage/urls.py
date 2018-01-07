@@ -1,7 +1,7 @@
 from . import views
-from django.urls import path
+from django.urls import path, re_path
 
 urlpatterns = [
-	path('', views.index, name = 'index'),
-    path('getMsg', views.getMsg, name = 'getMsg'),
+	re_path(r'^$|^index', views.index, name = 'index'),
+    path('getMsg/', views.getMsg, name = 'getMsg'),
 ]

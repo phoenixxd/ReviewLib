@@ -325,6 +325,17 @@
 
    /* Contact Form
     * ------------------------------------------------------ */
+
+    function objectifyForm(formArray) {
+        var returnArray = {};
+        for (var i=0;i<formArray.length;i++) {
+            if (formArray[i].value) {
+                returnArray[formArray[i].name] = formArray[i].value;
+            }
+        }
+        return returnArray;
+    }
+
     var clContactForm = function() {
         
         /* local validation */
@@ -334,16 +345,18 @@
             submitHandler: function(form) {
     
                 var sLoader = $('.submit-loader');
-    
+                var csrfmiddlewaretoken = $("#contactForm").find("input[name='csrfmiddlewaretoken']" ).val();
+                var formData = $('#contactForm').serializeArray();
+                formData = objectifyForm(formData);
+                formData["csrfmiddlewaretoken"] = csrfmiddlewaretoken
                 $.ajax({
     
                     type: "POST",
-                    url: "inc/sendEmail.php",
-                    data: $(form).serialize(),
+                    url: "/getMsg/",
+                    data: formData,
+
                     beforeSend: function() { 
-    
                         sLoader.slideDown("slow");
-    
                     },
                     success: function(msg) {
     
