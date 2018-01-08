@@ -10,3 +10,9 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.Name + ' | ' + self.Timestamp
+
+class Subscription(models.Model):
+    Email = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.Email

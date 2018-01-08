@@ -57,39 +57,21 @@ For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsi
                 url: form.attr("action"),
                 language: "en"
             }, options);
-            var url = settings.url.replace("/post?", "/post-json?").concat("&c=?");
+//            var url = settings.url.replace("/post?", "/post-json?").concat("&c=?");
             form.attr("novalidate", "true");
             email.attr("name", "EMAIL");
             form.submit(function() {
                 var msg;
 
                 function successCallback(resp) {
-                    if (resp.result === "success") {
-                        msg = "We have sent you a confirmation email";
+                    if (resp == "success") {
+                        msg = "Subscription has been made.";
                         label.removeClass("error").addClass("valid");
                         email.removeClass("error").addClass("valid")
                     } else {
                         email.removeClass("valid").addClass("error");
                         label.removeClass("valid").addClass("error");
-                        var index = -1;
-                        try {
-                            var parts = resp.msg.split(" - ", 2);
-                            if (parts[1] === undefined) {
-                                msg = resp.msg
-                            } else {
-                                var i = parseInt(parts[0], 10);
-                                if (i.toString() === parts[0]) {
-                                    index = parts[0];
-                                    msg = parts[1]
-                                } else {
-                                    index = -1;
-                                    msg = resp.msg
-                                }
-                            }
-                        } catch (e) {
-                            index = -1;
-                            msg = resp.msg
-                        }
+                        msg = "Some unknown error occured."
                     }
                     if (settings.language !== "en" && $.ajaxChimp.responses[msg] !== undefined && $.ajaxChimp.translations && $.ajaxChimp.translations[settings.language] && $.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]) {
                         msg = $.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]
@@ -105,11 +87,14 @@ For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsi
                 $.each(dataArray, function(index, item) {
                     data[item.name] = item.value
                 });
+                var csrfmiddlewaretoken = $("#mc-form").find("input[name='csrfmiddlewaretoken']" ).val();
+                data["csrfmiddlewaretoken"] = csrfmiddlewaretoken
+
                 $.ajax({
-                    url: url,
+                    type: "POST",
+                    url: "/getMail/",
                     data: data,
                     success: successCallback,
-                    dataType: "jsonp",
                     error: function(resp, text) {
                         console.log("mailchimp ajax submit error: " + text)
                     }

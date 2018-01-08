@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-import time, datetime
-from .models import Feedback
+import time, datetime, re
+from .models import Feedback, Subscription
 # Create your views here.
 def index(request):
     return render(request, 'HomePage/index.html', None)
@@ -17,3 +17,20 @@ def getMsg(request):
     msg.save()
 
     return HttpResponse('OK')
+
+def getMail(request):
+    counts = Subscription.objects.count()
+    try:
+        email = request.POST['EMAIL']
+        if re.match(r"^[-\w\.]+@([\w-]+\.)+[\w-]{2,4}$", email):
+            mail = Subscription(counts + 1, email)
+            mail.save()
+            return HttpResponse('success')
+        else:
+            return HttpResponse('failed')
+    except:
+        return HttpResponse('failed')
+
+
+
+
