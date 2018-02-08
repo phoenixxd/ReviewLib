@@ -80,9 +80,10 @@ def retQuerystr(param):
     # print(param)
     ret = "SELECT * FROM specifications WHERE";
     conj = []
-    if param['chipset'] != -1: conj.append(" INSTR(LOWER(chipset), LOWER('" + param['chipset'] + "')) > 0")
-    if param['brand'] != -1: conj.append(" INSTR(LOWER(brand), LOWER('" + param['brand'] + "')) > 0")
-    if param['os'] != -1: conj.append(" INSTR(LOWER(os), LOWER('" + param['os'] + "')) > 0")
+    if param['chipset'] != -1: conj.append(" LOWER(chipset) LIKE LOWER('%" + param['chipset'] + "%')")
+    if param['brand'] != -1: conj.append(" LOWER(brand) LIKE LOWER('%" + param['brand'] + "%')")
+    if param['os'] != -1: conj.append(" LOWER(os) LIKE LOWER('%" + param['os'] + "%')")
+    if param['model'] != -1: conj.append(" LOWER(model) LIKE LOWER('%" + param['model'] + "%')")
 
     if param['4g'] != -1: conj.append(" _4g == " + str(param['4g']))
     if param['3g'] != -1: conj.append(" _3g == " + str(param['3g']))
@@ -97,7 +98,6 @@ def retQuerystr(param):
     if param['frontcamera'] != -1: conj.append(" frontcamera >= " + str(num(param['frontcamera'])))
     if param['battery'] != -1: conj.append(" battery >= " + str(num(param['battery'])))
 
-    if param['model'] != -1: conj.append(" INSTR(LOWER(model), LOWER('" + param['model'] + "')) > 0")
     # print(conj)
     ret = ret + " and".join(conj) + " ORDER BY AvgCompoundScore DESC;"
     return ret
