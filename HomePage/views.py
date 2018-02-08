@@ -327,6 +327,7 @@ def solve(inp, params, handlereply, replymsg):
         valuereturn = 0
         ret = []
 
+        return sqlite3.sqlite_version, handlereply
         conn = create_connection("database.db")
         if conn is None:
             return "Database not found.", handlereply
