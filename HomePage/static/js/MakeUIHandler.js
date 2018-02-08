@@ -12,41 +12,27 @@ $(document).ready(function(){
   //If user submits the form
   // link to echo user message using jquery : https://stackoverflow.com/questions/19443834/how-to-display-input-back-to-the-user-on-an-html-page
   $("#submitmsg").click(function(){
+      
       var clientmsg = $("#usermsg").val();
-      var i=0;
       $("#usermsg").val("");
-      if (clientmsg !=  "" || i%2==0){
+
+      if (clientmsg !=  ""){
         var $query_div = $("<div class='client-msg'></div>");
         $("#chatbox").append($query_div);
         $(".client-msg:last").html(clientmsg);
 
-        i++;
+        var resp = responsegen(clientmsg);  //this would send ajax request
 
-        /*var $resp_div = $("<div class='response-msg'></div>");
-        $("#chatbox").append($resp_div).append("<p></p>");
-        $(".response-msg:last").html(clientmsg);
-        */
-
-        var resp = responsegen(clientmsg);
-        //alert(resp);
-
-        if (resp[0] != "" && resp[1]==0){
-          var $resp_div = $("<div class='response-msg'></div>");
-          $("#chatbox").append($resp_div);
-          $(".response-msg:last").html("This is a test!");
-        }
-
-        if (resp[0] != "" && resp[1]==1){
+        if (resp[0] != ""){
           var $resp_div = $(resp[0]);
           $("#chatbox").append($resp_div);
           regbuttonclick(10,10,10,10,10,20,20,10,"spec1 <br> spec2");
           //pass the +ve and -ve values to this function
           //$(".response-msg:last").html(resp);
         }
-
       }
 
-
+    return false;   //return false to prevent site reloading
   });
 
   $('#usermsg').keypress(function(e) {

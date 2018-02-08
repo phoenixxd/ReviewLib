@@ -321,10 +321,11 @@
 
               <div id="chatbox">
               </div>
-
+              <form name="msgForm" id="msgForm" method="post" action="" novalidate="novalidate">
+                    {% csrf_token %}
               <input name="usermsg" type="text" id="usermsg" size="63"/>
               <center><input name="submitmsg" type="submit"  id="submitmsg" value="Send" /></center>
-
+              </form>
           </div>
 
 
@@ -589,7 +590,7 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'http://cdn.pubnub.com/pubnub.min.js' %}"></script>
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
     <script src="{% static 'js1/app.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/MakeUIHandler.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/MakeDonut.js' %}"></script>
