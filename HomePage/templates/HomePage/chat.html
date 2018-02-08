@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+
+    <title>Bot</title>
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!"> 
+    <link rel="stylesheet" href="{% static 'other/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'other/css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'other/css/main.css' %}">
+    <link href="{% static 'other/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'other/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'other/media/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'other/media/css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'other/css2/style.css' %}">
+    <link rel="shortcut icon" href="favicon.ico" type="x-icon">
+    <link rel="icon" href="favicon.ico" type="x-icon">
+  </head>
+  <body>
+  		
+  	<style>
+  	.social-like, .social-dislike {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: #03A9F4;
+    color: #fff;
+}
+  #input
+  {
+    color: red;
+  }
+  	.checked {
+    color: orange;
+}
+
+  		img
+  		{
+  		border-radius:75%;
+  	}
+  	#x
+  	{
+  		border-radius:0%;
+  	}
+  	body
+  	{
+  		color: white;
+  		background-image: url("{% static 'other/images/hero-bg.jpg' %}");
+      height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+}
+  	}
+  	</style>
+  
+  	<div>
+      <a href="index.html">
+    <center><img id="x" src="{% static 'other/images/logo.png' %}"></center>
+  </a>
+  </div>
+     
+     
+<!-- <header>
+    <h1>Super Simple Chat</h1>
+  </header>
+ -->
+  <section id="main" role="main">
+    <div id="chat">
+      <i id="avatar" class="face12"></i><input type="text" id="input" placeholder="Type your message...">
+      <input type="text" id="input1" placeholder="Type your message...">
+    </div>
+    <button id="button">Send Message</button>
+    <button id="button1"  >Send Message</button>
+    
+
+    
+    <p id="presence" style="display : none;"></p>
+    <p id="presence1" style="display : none;"></p>
+    <div id="output" style="width : 50%;"></div>
+    <div id="output1" style="position:fixed; width : 50%; left : 50%; text-align : right;"></div>
+  </section>
+
+<footer>
+
+  <nav class="header-nav">
+
+            <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
+
+            <div class="header-nav__content">
+                <h3>Navigation</h3>
+                
+                <ul class="header-nav__list">
+                    <li class="current"><a   href="index.html" title="home">Home</a></li>
+                    
+                </ul>
+    
+                <p>ReviewLib is much more than just a review aggregator. It helps you find your perfect phone using advanced tools.</p>
+    
+                <ul class="header-nav__social">
+                    <li>
+                        <a href="https://www.facebook.com/profile.php?id=100009703414712"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/binator_1308"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/abinator_1308/"><i class="fa fa-instagram"></i></a>
+                    </li>
+                </ul>
+
+            </div> <!-- end header-nav__content -->
+
+        </nav>
+         <a class="header-menu-toggle" href="#0">
+            <span class="header-menu-text">Menu</span>
+            <span class="header-menu-icon"></span>
+        </a>
+
+</footer>
+    
+
+    <script src="{% static 'other/js/jquery.min.js' %}"></script>
+    <script src="{% static 'other/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'other/js/scripts.js' %}"></script>
+     <script src="{% static 'other/media/js/jquery.min.js' %}"></script>
+    <script src="{% static 'other/media/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'other/media/js/scripts.js' %}"></script>
+    <script src="{% static 'other/js1/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'other/js1/plugins.js' %}"></script>
+    <script src="{% static 'other/js1/main.js' %}"></script>
+
+  <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+  <script src="{% static 'other/js2/app.js' %}"></script>
+
+  </body>
+</html>
