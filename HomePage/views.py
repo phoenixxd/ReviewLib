@@ -328,6 +328,8 @@ def solve(inp, params, handlereply, replymsg):
         ret = []
 
         conn = create_connection("database.db")
+        if conn is None:
+            return "Database not found.", handlereply
         cur = conn.cursor()
 
         # import pdb; pdb.set_trace()
