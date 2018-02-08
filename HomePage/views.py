@@ -61,12 +61,11 @@ def msgForm(request):
     return HttpResponse(reply)
 
 # chat bot
-# import nltk
-# from itertools import chain
-# from nltk.corpus import wordnet
-# import re
-# import sqlite3
-# from sqlite3 import Error
+import nltk
+from itertools import chain
+from nltk.corpus import wordnet
+import sqlite3
+from sqlite3 import Error
 
 
 # def num(s):
