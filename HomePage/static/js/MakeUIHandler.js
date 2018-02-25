@@ -1,5 +1,6 @@
 // jQuery Document
 $(document).ready(function(){
+  var button_count = 0;
   //If user wants to end session
   $("#exit").click(function(){
     var exit = confirm("Are you sure you want to end the session?");
@@ -15,18 +16,21 @@ $(document).ready(function(){
       
       var clientmsg = $("#usermsg").val();
       $("#usermsg").val("");
+      var button_name = 'button';
 
       if (clientmsg !=  ""){
         var $query_div = $("<div class='client-msg'></div>");
         $("#chatbox").append($query_div);
         $(".client-msg:last").html(clientmsg);
-
-        var resp = responsegen(clientmsg);  //this would send ajax request
+        
+        button_name = button_name + button_count;
+        button_count++;
+        var resp = responsegen(clientmsg, button_name);  //this would send ajax request
 
         if (resp[0] != ""){
           var $resp_div = $(resp[0]);
           $("#chatbox").append($resp_div);
-          regbuttonclick(10,10,10,10,10,20,20,10,"spec1 <br> spec2");
+          regbuttonclick(10,10,10,10,10,20,20,10,"spec1 <br> spec2", button_name);
           //pass the +ve and -ve values to this function
           //$(".response-msg:last").html(resp);
         }
