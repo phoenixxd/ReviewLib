@@ -4,9 +4,19 @@ $(document).ready(function(){
   $("#exit").click(function(){
     var exit = confirm("Are you sure you want to end the session?");
     if(exit==true){
-      // alert("THANK YOU!")/*window.location = 'index.php?logout=true';*/
-      $("#chatbox").html("");
+      $.ajax({
+        type: "POST",
+        url: "/clrsession/",
+        success: function(msg) {  
+          $("#chatbox").html("");
+        },
+        error: function(x, e, exc) {
+          $("#chatbox").html("Some error occurred.");
+        }
+
+    });
     }
+    return false;
   });
 
   //If user submits the form

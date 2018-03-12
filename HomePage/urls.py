@@ -7,4 +7,5 @@ urlpatterns = [
     path('getMail/', views.getMail, name = 'getMsg'),
     path('chat/', views.chat, name = 'chat'),
     path('msgForm/', views.msgForm, name = 'msgForm'),
+    path('clrsession/', views.clrsession, name = 'clrsession'),
 ]

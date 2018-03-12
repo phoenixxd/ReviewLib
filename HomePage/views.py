@@ -3,6 +3,7 @@ from django.shortcuts import render
 import time, datetime, re
 from .models import Feedback, Subscription
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -36,6 +37,11 @@ def getMail(request):
 
 def chat(request):
     return render(request, 'HomePage/chatbox-5.html', None)
+
+@csrf_exempt
+def clrsession(request):
+    request.session.flush()
+    return HttpResponse("Success")
 
 def msgForm(request):
 
