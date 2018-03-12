@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import time, datetime, re
 from .models import Feedback, Subscription
+import json
 
 # Create your views here.
 def index(request):
@@ -38,10 +39,24 @@ def chat(request):
 
 def msgForm(request):
 
-    params = {"minbudget": -1, "brand": -1, "model": -1, "dualsim": -1, "4g": -1, "3g": -1, "display": -1,
-              "rearcamera": -1,
-              "frontcamera": -1, "cpu": -1, "chipset": -1, "ram": -1, "internal": -1, "fingerprint": -1, "os": -1,
-              "battery": -1}
+    params = {
+    "minbudget": -1, 
+    "brand": -1, 
+    "model": -1, 
+    "dualsim": -1, 
+    "4g": -1, 
+    "3g": -1, 
+    "display": -1,
+    "rearcamera": -1,
+    "frontcamera": -1, 
+    "cpu": -1, 
+    "chipset": -1, 
+    "ram": -1, 
+    "internal": -1, 
+    "fingerprint": -1, 
+    "os": -1,
+    "battery": -1
+    }
     params = request.session.get("params", params)
     handlereply = request.session.get("handlereply", 0)
     replymsg = request.session.get("replymsg", [])
@@ -49,6 +64,7 @@ def msgForm(request):
     # import pdb;    pdb.set_trace()
 
     reply, handlereply = solve(request.POST.get('usermsg'), params, handlereply, replymsg)
+    reply = json.dumps(reply, indent=4)
 
     # import pdb; pdb.set_trace()
 
@@ -344,7 +360,7 @@ def solve(inp, params, handlereply, replymsg):
 
         if len(ret) > 0:
             phone = random.choice(ret)
-            return phone[12] + " " + phone[8], handlereply
+            return phone, handlereply
 
         if valuereturn:
             replymsg.append(1)

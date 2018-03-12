@@ -13,24 +13,17 @@ $(document).ready(function(){
   // link to echo user message using jquery : https://stackoverflow.com/questions/19443834/how-to-display-input-back-to-the-user-on-an-html-page
   $("#submitmsg").click(function(){
       
-      var clientmsg = $("#usermsg").val();
+    var clientmsg = $("#usermsg").val();
+    // return false;   //return false to prevent site reloading
+
+    if (clientmsg !=  ""){
+      var $query_div = $("<div class='client-msg'></div>");
+      $("#chatbox").append($query_div);
+      $(".client-msg:last").html(clientmsg);
+
+      responsegen(clientmsg);  //this would send ajax request
       $("#usermsg").val("");
-
-      if (clientmsg !=  ""){
-        var $query_div = $("<div class='client-msg'></div>");
-        $("#chatbox").append($query_div);
-        $(".client-msg:last").html(clientmsg);
-
-        var resp = responsegen(clientmsg);  //this would send ajax request
-
-        if (resp[0] != ""){
-          var $resp_div = $(resp[0]);
-          $("#chatbox").append($resp_div);
-          regbuttonclick(10,10,10,10,10,20,20,10,"spec1 <br> spec2");
-          //pass the +ve and -ve values to this function
-          //$(".response-msg:last").html(resp);
-        }
-      }
+    }
 
     return false;   //return false to prevent site reloading
   });

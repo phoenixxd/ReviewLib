@@ -51,8 +51,8 @@ $(document).ready(function() {
                 }
 
             });
+            $("#usermsg").val("");
         }
-        $("#usermsg").val("");
         return false;
     });
 
